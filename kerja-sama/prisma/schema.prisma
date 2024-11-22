@@ -12,3 +12,77 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+
+enum roleUser{
+  admin
+  staff
+  mitra
+}
+
+model User {
+  id        Int       @id @default(autoincrement())
+  nama_user String
+  email     String     @unique
+  password  String
+  role      roleUser
+
+  notifikasi Notifikasi[]
+}
+
+model TipeKerjasama {
+  id          Int         @id @default(autoincrement())
+  nama_tipe   String
+  deskripsi   String?
+  kerjasama   Kerjasama[]
+}
+
+model Kerjasama {
+  id            Int              @id @default(autoincrement())
+  nomor_kerjasama String
+  judul_kerjasama String
+  topik_kerjasama String
+  tanggal_mulai  DateTime
+  tanggal_akhir  DateTime
+  status         String
+  id_tipe        Int
+  id_instansi    Int
+
+  tipe           TipeKerjasama   @relation(fields: [id_tipe], references: [id])
+  instansi       Instansi        @relation(fields: [id_instansi], references: [id])
+  dokumen        DokumenKerjasama[]
+}
+
+model Instansi {
+  id           Int              @id @default(autoincrement())
+  nama_instansi String
+  bidang_usaha  String
+  provinsi      String
+  kota          String
+  alamat        String
+  website       String
+  telepon       String?
+  email         String @unique
+  kerjasama     Kerjasama[]
+}
+
+model DokumenKerjasama {
+  id             Int        @id @default(autoincrement())
+  id_kerjasama   Int
+  nama_dokumen   String
+  path_file      String
+  tanggal_upload DateTime   @default(now())
+  keterangan     String
+
+  kerjasama      Kerjasama  @relation(fields: [id_kerjasama], references: [id])
+}
+
+model Notifikasi {
+  id             Int        @id @default(autoincrement())
+  id_user        Int
+  pesan          String
+  status         String     @default("unread")
+  tanggal_kirim  DateTime   @default(now())
+
+  user           User       @relation(fields: [id_user], references: [id])
+}
