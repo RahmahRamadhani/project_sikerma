@@ -40,13 +40,13 @@ export async function POST(req: Request) {
         return Response.json ({
             statusCode: 200,
             msg: "Berhasil create Data",
-            data: newItem
+            data: newItem,
         });
 
     } catch (error) {
         return Response.json ({
             statusCode: 500,
-            msg: "Gagal membuat data"
+            msg: "Gagal membuat data",
         });
     }
 }
