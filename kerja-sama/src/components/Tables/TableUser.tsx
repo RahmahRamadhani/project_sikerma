@@ -1,12 +1,14 @@
-import { USER } from "@/types/user";
+// import { USER } from "@/types/user";
+import { User } from "@prisma/client";
 import Image from "next/image";
 
-const user: USER[] = [
+const user: User[] = [
   {
-    nama: "Admin",
+    nama_user: "Admin",
     email: "admin@gmail.com",
     password: "admin123",
     role: "admin",
+    id: 0
   }
 ];
 
@@ -59,7 +61,7 @@ const TableUser = () => {
           >
             <div className="flex items-center gap-3 p-2.5 xl:p-5">
               <p className="hidden text-black dark:text-white sm:block">
-                {brand.nama}
+                {brand.nama_user}
               </p>
             </div>
 

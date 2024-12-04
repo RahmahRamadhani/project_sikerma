@@ -1,0 +1,72 @@
+@startuml
+!define Table(name, desc) class name << (T,#FFAAAA) >> as desc
+
+Table(User, "User") {
+  + id : Int <<PK>>
+  --
+  + nama_user : String
+  + email : String <<UNIQUE>>
+  + password : String
+  + role : roleUser
+}
+
+Table(TipeKerjasama, "TipeKerjasama") {
+  + id : Int <<PK>>
+  --
+  + nama_tipe : String
+  + deskripsi : String?
+}
+
+Table(Kerjasama, "Kerjasama") {
+  + id : Int <<PK>>
+  --
+  + nomor_kerjasama : String
+  + judul_kerjasama : String
+  + topik_kerjasama : String
+  + tanggal_mulai : DateTime
+  + tanggal_akhir : DateTime
+  + status : String
+  + id_tipe : Int <<FK>>
+  + id_instansi : Int <<FK>>
+}
+
+Table(Instansi, "Instansi") {
+  + id : Int <<PK>>
+  --
+  + nama_instansi : String
+  + bidang_usaha : String
+  + provinsi : String
+  + kota : String
+  + alamat : String
+  + website : String
+  + telepon : String?
+  + email : String <<UNIQUE>>
+}
+
+Table(DokumenKerjasama, "DokumenKerjasama") {
+  + id : Int <<PK>>
+  --
+  + id_kerjasama : Int <<FK>>
+  + nama_dokumen : String
+  + path_file : String
+  + tanggal_upload : DateTime
+  + keterangan : String
+}
+
+Table(Notifikasi, "Notifikasi") {
+  + id : Int <<PK>>
+  --
+  + id_user : Int <<FK>>
+  + pesan : String
+  + status : String
+  + tanggal_kirim : DateTime
+}
+
+User "1" -- "0..*" Notifikasi : "mengirim"
+Notifikasi "N" -- "1" User : "untuk"
+
+TipeKerjasama "1" -- "0..*" Kerjasama : "tipe"
+Instansi "1" -- "0..*" Kerjasama : "instansi"
+Kerjasama "1" -- "0..*" DokumenKerjasama : "dokumen"
+
+@enduml
