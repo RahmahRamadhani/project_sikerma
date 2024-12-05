@@ -5,48 +5,44 @@ export default function DataKerjasama() {
                 <table className="w-full table-auto">
                     <thead>
                         <tr className="bg-gray-200 text-left dark:bg-meta-4">
-                            <th className="px-4 py-4 font-bold text-black dark:text-white xl:pl-11">
+                            <th className="px-4 py-4 font-bold text-black text-center dark:text-white">
                                 No
                             </th>
-                            <th className="px-4 py-4 font-bold text-black dark:text-white">
+                            <th className="px-4 py-4 font-bold text-black text-center dark:text-white">
                                 Nomor Kerjasama
                             </th>
-                            <th className="px-4 py-4 font-bold text-black dark:text-white">
+                            <th className="px-4 py-4 font-bold text-black text-center dark:text-white">
                                 Tipe
                             </th>
-                            <th className="px-4 py-4 font-bold text-black dark:text-white">
+                            <th className="px-4 py-4 font-bold text-black text-center dark:text-white">
                                 Judul
                             </th>
-                            {/* <th className="px-4 py-4 font-bold text-black dark:text-white">
-                Topik
-              </th> */}
-                            <th className="px-4 py-4 font-bold text-black dark:text-white">
+                           
+                            <th className="px-4 py-4 font-bold text-black text-center dark:text-white">
                                 Instansi
                             </th>
-                            {/* <th className="px-4 py-4 font-bold text-black dark:text-white">
-                Tanggal Mulai
-              </th> */}
-                            <th className="px-4 py-4 font-bold text-black dark:text-white">
+                            
+                            <th className="px-4 py-4 font-bold text-black text-center dark:text-white">
                                 Tanggal Akhir
                             </th>
-                            <th className="px-4 py-4 font-bold text-black dark:text-white">
+                            <th className="px-4 py-4 font-bold text-black text-center dark:text-white">
                                 Status
                             </th>
-                            <th className="px-4 py-4 font-bold text-black dark:text-white">
+                            <th className="px-4 py-4 font-bold text-black text-center dark:text-white">
                                 Action
                             </th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td className="mt-3 mb-3 px-4 py-4 text-black">1</td>
-                            <td className="mt-3 mb-3 px-4 py-4 text-black">21/MOU</td>
-                            <td className="mt-3 mb-3 px-4 py-4 text-black">MOU</td>
-                            <td className="mt-3 mb-3 px-4 py-4 text-black">pendidikan</td>
-                            <td className="mt-3 mb-3 px-4 py-4 text-black">politeknik negeri padang</td>
-                            <td className="mt-3 mb-3 px-4 py-4 text-black">12 januari 2028</td>
-                            <td className="mt-3 mb-3 px-4 py-4 text-black">aktif</td>
-                            <td className="flex gap-2 mt-3 px-4 py-4">
+                            <td className="mt-3 mb-3 px-3 py-3 text-black text-center">1</td>
+                            <td className="mt-3 mb-3 px-3 py-3 text-black text-center ">21/MOU</td>
+                            <td className="mt-3 mb-3 px-3 py-3 text-black text-center">MOU</td>
+                            <td className="mt-3 mb-3 px-3 py-3 text-black text-center">pendidikan</td>
+                            <td className="mt-3 mb-3 px-3 py-3 text-black text-center">politeknik negeri padang</td>
+                            <td className="mt-3 mb-3 px-3 py-3 text-black text-center">12 januari 2028</td>
+                            <td className="mt-3 mb-3 px-3 py-3 text-black text-center">aktif</td>
+                            <td className="flex gap-2 mt-3 px-3 py-3">
                                 <button className="hover:text-primary">
                                     <svg
                                         className="fill-current"

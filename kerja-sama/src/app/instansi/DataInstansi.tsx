@@ -4,47 +4,38 @@ export default function DataInstansi() {
             <table className="w-full table-auto">
                 <thead>
                     <tr className="bg-gray-200 text-left dark:bg-meta-4">
-                        <th className="px-4 py-4 font-medium text-black dark:text-white xl:pl-11">
+                        <th className="px-4 py-4 font-bold text-black text-center dark:text-white">
                             No
                         </th>
-                        <th className="px-4 py-4 font-medium text-black dark:text-white">
+                        <th className="px-4 py-4 font-bold text-black text-center dark:text-white">
                             Nama Instansi
                         </th>
-                        <th className="px-4 py-4 font-medium text-black dark:text-white">
+                        <th className="px-4 py-4 font-bold text-black text-center dark:text-white">
                             Bidang Usaha
                         </th>
-                        <th className="px-4 py-4 font-medium text-black dark:text-white">
+                        <th className="px-4 py-4 font-bold text-black text-center dark:text-white">
                             Provinsi
                         </th>
-                        <th className="px-4 py-4 font-medium text-black dark:text-white">
+                        <th className="px-4 py-4 font-bold text-black text-center dark:text-white">
                             Kota
                         </th>
-                        {/* <th className="px-4 py-4 font-medium text-black dark:text-white">
-                Alamat
-              </th> */}
-                        <th className="px-4 py-4 font-medium text-black dark:text-white">
+                        <th className="px-4 py-4 font-bold text-black text-center dark:text-white">
                             Website
                         </th>
-                        {/* <th className="px-4 py-4 font-medium text-black dark:text-white">
-                Telepon
-              </th>
-              <th className="px-4 py-4 font-medium text-black dark:text-white">
-                Email
-              </th> */}
-                        <th className="px-4 py-4 font-medium text-black dark:text-white">
+                        <th className="px-4 py-4 font-bold text-black text-center dark:text-white">
                             Action
                         </th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td className="mt-3 mb-3 px-2 py-2 text-black">1</td>
-                        <td className="mt-3 mb-3 px-2 py-2 text-black">fdferg</td>
-                        <td className="mt-3 mb-3 px-2 py-2 text-black">rgegre</td>
-                        <td className="mt-3 mb-3 px-2 py-2 text-black">ergre</td>
-                        <td className="mt-3 mb-3 px-2 py-2 text-black">erger</td>
-                        <td className="mt-3 mb-3 px-2 py-2 text-black">errffe</td>
-                        <td className="flex gap-2 mt-3 px-2 py-2">
+                        <td className="mt-3 mb-3 px-3 py-3 text-black text-center">1</td>
+                        <td className="mt-3 mb-3 px-3 py-3 text-black text-center">fdferg</td>
+                        <td className="mt-3 mb-3 px-3 py-3 text-black text-center">rgegre</td>
+                        <td className="mt-3 mb-3 px-3 py-3 text-black text-center">ergre</td>
+                        <td className="mt-3 mb-3 px-3 py-3 text-black text-center">erger</td>
+                        <td className="mt-3 mb-3 px-3 py-3 text-black text-center">errffe</td>
+                        <td className="flex gap-2 mt-3 mb-3 px-3 py-3 text-center ">
                             <button className="hover:text-primary">
                                 <svg
                                     className="fill-current"
