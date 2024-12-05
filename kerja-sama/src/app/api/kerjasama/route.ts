@@ -5,20 +5,20 @@ const prisma = new PrismaClient();
 // Type untuk data Kerjasama
 type KerjasamaType = {
   nomor_kerjasama: string;
-  tipe: {
-    nama_tipe: string,
-    deskripsi: string
-  }
-  instansi: {
-    nama_instansi: string,
-    bidang_usaha: string,
-    provinsi: string,
-    kota: string,
-    alamat: string,
-    website: string,
-    telepon?: string,
-    email: string
-  }
+  // tipe: {
+  //   nama_tipe: string,
+  //   deskripsi: string
+  // }
+  // instansi: {
+  //   nama_instansi: string,
+  //   bidang_usaha: string,
+  //   provinsi: string,
+  //   kota: string,
+  //   alamat: string,
+  //   website: string,
+  //   telepon?: string,
+  //   email: string
+  // }
   judul_kerjasama: string;
   topik_kerjasama: string;
   tanggal_mulai: Date;
@@ -137,7 +137,9 @@ export async function PUT(req: Request) {
     const updatedKerjasama = await prisma.kerjasama.update({
       where: { id: Number(id) },
       data: {
-        ...body, // Hanya memperbarui field yang diberikan
+        ...body, 
+        
+        // Hanya memperbarui field yang diberikan
       },
     });
 

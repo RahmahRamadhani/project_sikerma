@@ -2,12 +2,12 @@ import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
 
 import { Metadata } from "next";
 import DefaultLayout from "@/components/Layouts/DefaultLayout";
-import TableInstansi from "@/components/Tables/TableInstansi";
-import DataInstansi from "./DataInstansi";
-import AddInstansi from "./tambah";
+
+import DataDokumen from "./DataDokumen";
+import AddDokumen from "./tambah";
 
 export const metadata: Metadata = {
-  title: "Tabel Instansi",
+  title: "Tabel Dokumen",
   description:
     "Sistem Kerjasama PNP",
   };
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 const TablesPage = () => {
   return (
     <DefaultLayout>
-      <Breadcrumb pageName="Tabel Instansi" />
+      <Breadcrumb pageName="Tabel Dokumen" />
 
       <div className="rounded-sm border border-stroke bg-white px-5 pb-2.5 pt-6 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
 
@@ -31,9 +31,9 @@ const TablesPage = () => {
               />
             </div>
           </form>
-         <AddInstansi/>
+         <AddDokumen/>
         </div>
-        <DataInstansi/>
+        <DataDokumen/>
       </div>
     </DefaultLayout>
   );
