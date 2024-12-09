@@ -1,5 +1,5 @@
 import { PrismaClient,roleUser } from "@prisma/client";
-
+import bcrypt from 'bcryptjs';
 const prisma = new PrismaClient();
 
 // Type untuk User
@@ -31,16 +31,48 @@ export async function GET() {
   }
 }
 
+
+import validator from 'validator';
+
 // --------------------------- MENAMBAHKAN DATA ---------------------------
 export async function POST(req: Request) {
   try {
     const body: UserType = await req.json();
 
+    // Validasi email
+    if (!validator.isEmail(body.email)) {
+      return Response.json(
+        {
+          statusCode: 400,
+          msg: "Format email tidak valid",
+        },
+        { status: 400 }
+      );
+    }
+
+    // Cek apakah email sudah terdaftar
+    const existingUser = await prisma.user.findUnique({
+      where: { email: body.email },
+    });
+
+    if (existingUser) {
+      return Response.json(
+        {
+          statusCode: 400,
+          msg: "Email sudah terdaftar",
+        },
+        { status: 400 }
+      );
+    }
+
+    // Enkripsi password
+    const hashedPassword = await bcrypt.hash(body.password, 10);
+
     const newUser = await prisma.user.create({
       data: {
         nama_user: body.nama_user,
         email: body.email,
-        password: body.password, // Harap enkripsi password jika digunakan di aplikasi nyata
+        password: hashedPassword,
         role: body.role as roleUser,
       },
     });
@@ -80,13 +112,18 @@ export async function PUT(req: Request) {
 
     const body: Partial<UserType> = await req.json();
 
+    // Jika password diubah, enkripsi password baru
+    if (body.password) {
+      body.password = await bcrypt.hash(body.password, 10);
+    }
+
     const updatedUser = await prisma.user.update({
-        where: { id: Number(id) },
-        data: {
-          ...body,
-          role: body.role as roleUser, // Cast string ke enum
-        },
-      });
+      where: { id: Number(id) },
+      data: {
+        ...body,
+        role: body.role as roleUser, // Cast string ke enum
+      },
+    });
 
     return Response.json({
       statusCode: 200,
