@@ -1,24 +1,10 @@
-import { PrismaClient } from '@prisma/client';
+import { Prisma, PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
 // Type untuk data Kerjasama
 type KerjasamaType = {
   nomor_kerjasama: string;
-  // tipe: {
-  //   nama_tipe: string,
-  //   deskripsi: string
-  // }
-  // instansi: {
-  //   nama_instansi: string,
-  //   bidang_usaha: string,
-  //   provinsi: string,
-  //   kota: string,
-  //   alamat: string,
-  //   website: string,
-  //   telepon?: string,
-  //   email: string
-  // }
   judul_kerjasama: string;
   topik_kerjasama: string;
   tanggal_mulai: Date;
@@ -121,27 +107,39 @@ export async function PUT(req: Request) {
     }
 
     const body: Partial<KerjasamaType> = await req.json();
+    console.log("ID untuk update:", id);
+    console.log("Data yang diterima untuk update:", body);
 
-    // Validasi jika body kosong
-    if (Object.keys(body).length === 0) {
+    const existingKerjasama = await prisma.kerjasama.findUnique({
+      where: { id: Number(id) },
+    });
+    if (!existingKerjasama) {
+      return Response.json(
+        {
+          statusCode: 404,
+          msg: "Data kerjasama tidak ditemukan",
+        },
+        { status: 404 }
+      );
+    }
+
+    // Validasi input (opsional)
+    if (body.tanggal_mulai && isNaN(Date.parse(body.tanggal_mulai.toString()))) {
       return Response.json(
         {
           statusCode: 400,
-          msg: "Tidak ada data untuk diperbarui",
+          msg: "Format tanggal_mulai tidak valid",
         },
         { status: 400 }
       );
     }
 
-    // Update data kerjasama berdasarkan ID
     const updatedKerjasama = await prisma.kerjasama.update({
       where: { id: Number(id) },
-      data: {
-        ...body, 
-        
-        // Hanya memperbarui field yang diberikan
-      },
+      data: { ...body },
     });
+
+    console.log("Updated Kerjasama:", updatedKerjasama);
 
     return Response.json({
       statusCode: 200,
@@ -149,6 +147,17 @@ export async function PUT(req: Request) {
       data: updatedKerjasama,
     });
   } catch (error) {
+    if (error instanceof Prisma.PrismaClientKnownRequestError) {
+      if (error.code === "P2025") {
+        return Response.json(
+          {
+            statusCode: 404,
+            msg: "Data kerjasama tidak ditemukan",
+          },
+          { status: 404 }
+        );
+      }
+    }
     console.error("Error updating Kerjasama:", error);
     return Response.json(
       {
@@ -159,6 +168,8 @@ export async function PUT(req: Request) {
     );
   }
 }
+
+
 
 // --------------------------- MENGHAPUS DATA ---------------------------
 export async function DELETE(req: Request) {

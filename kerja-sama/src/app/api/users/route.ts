@@ -11,9 +11,47 @@ type UserType = {
 };
 
 // --------------------------- MENAMPILKAN DATA ---------------------------
-export async function GET() {
+// export async function GET() {
+//   try {
+//     const users = await prisma.user.findMany();
+//     return Response.json({
+//       statusCode: 200,
+//       msg: "Data berhasil diambil",
+//       data: users,
+//     });
+//   } catch (error) {
+//     console.error("Error fetching users:", error);
+//     return Response.json(
+//       {
+//         statusCode: 500,
+//         msg: "Gagal mengambil data",
+//       },
+//       { status: 500 }
+//     );
+//   }
+// }
+export async function GET(req: Request) {
   try {
-    const users = await prisma.user.findMany();
+    const url = new URL(req.url);
+    const search = url.searchParams.get("search") || "";
+
+    const users = await prisma.user.findMany({
+      where: {
+        nama_user: {
+          contains: search,
+          mode: "insensitive",
+        },
+      },
+    });
+
+    if (users.length === 0 && search) {
+      return Response.json({
+        statusCode: 404,
+        msg: "Data tidak ditemukan. Menampilkan semua data.",
+        data: await prisma.user.findMany(),
+      });
+    }
+
     return Response.json({
       statusCode: 200,
       msg: "Data berhasil diambil",
@@ -30,6 +68,10 @@ export async function GET() {
     );
   }
 }
+
+
+
+
 
 
 import validator from 'validator';
