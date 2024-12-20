@@ -3,26 +3,23 @@ import React, { useEffect, useState } from 'react';
 import EditKerjasama from './edit';
 
 export default function DataKerjasama() {
-    // State untuk menyimpan data kerjasama
     const [kerjasamaList, setKerjasamaList] = useState<any[]>([]);
-    const [loading, setLoading] = useState<boolean>(true); // Untuk status loading
-
-    // Mengambil data dari API ketika komponen dimuat
+    const [loading, setLoading] = useState<boolean>(true); 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('/api/kerjasama'); // Ganti dengan endpoint API yang sesuai
+                const response = await fetch('/api/kerjasama'); 
                 const data = await response.json();
-                setKerjasamaList(data.data); // Menyimpan data kerjasama di state
-                setLoading(false); // Mengubah status loading setelah data diterima
+                setKerjasamaList(data.data); 
+                setLoading(false); 
             } catch (error) {
                 console.error('Gagal mengambil data:', error);
-                setLoading(false); // Mengubah status loading jika terjadi error
+                setLoading(false); 
             }
         };
 
         fetchData();
-    }, []); // Menjalankan sekali saat komponen pertama kali dirender
+    }, []); 
 
 //menghapus data
 const handleDelete = async (id: number) => {
@@ -31,10 +28,10 @@ const handleDelete = async (id: number) => {
         const response = await fetch(`/api/kerjasama?id=${id}`, { method: 'DELETE' });
         const result = await response.json();
         if (response.ok) {
-          setKerjasamaList(kerjasamaList.filter((kerjasama) => kerjasama.id !== id)); // Hapus data dari state
-          alert(result.msg); // Pesan sukses
+          setKerjasamaList(kerjasamaList.filter((kerjasama) => kerjasama.id !== id)); 
+          alert(result.msg); 
         } else {
-          alert(result.msg); // Pesan error dari API
+          alert(result.msg); 
         }
       } catch (err) {
         alert('Gagal menghapus data kerjasama');
@@ -43,7 +40,7 @@ const handleDelete = async (id: number) => {
   };
 
     if (loading) {
-        return <div>Loading...</div>; // Menampilkan loading saat data sedang diambil
+        return <div>Loading...</div>; 
     }
 
     return (

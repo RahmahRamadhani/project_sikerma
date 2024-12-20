@@ -7,7 +7,7 @@ import DataInstansi from "./DataInstansi";
 import AddInstansi from "./tambah";
 
 export const metadata: Metadata = {
-  title: "Tabel Instansi",
+  title: "Data Instansi",
   description:
     "Sistem Kerjasama PNP",
   };
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 const TablesPage = () => {
   return (
     <DefaultLayout>
-      <Breadcrumb pageName="Tabel Instansi" />
+      <Breadcrumb pageName="Data Instansi" />
 
       <div className="rounded-sm border border-stroke bg-white px-5 pb-2.5 pt-6 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
 

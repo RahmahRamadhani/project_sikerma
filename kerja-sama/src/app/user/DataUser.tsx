@@ -20,17 +20,17 @@ export default function DataUser() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('/api/users'); // Endpoint API
+        const response = await fetch('/api/users');
         const data = await response.json();
         if (response.ok) {
-          setUsers(data.data); // Data disimpan ke state
+          setUsers(data.data); 
         } else {
           setError(data.msg || 'Gagal memuat data');
         }
       } catch (err) {
         setError('Terjadi kesalahan saat memuat data');
       } finally {
-        setLoading(false); // Loading selesai
+        setLoading(false); 
       }
     };
     fetchData();
@@ -43,10 +43,10 @@ export default function DataUser() {
         const response = await fetch(`/api/users?id=${id}`, { method: 'DELETE' });
         const result = await response.json();
         if (response.ok) {
-          setUsers(users.filter((user) => user.id !== id)); // Hapus data dari state
+          setUsers(users.filter((user) => user.id !== id)); 
           alert(result.msg); // Pesan sukses
         } else {
-          alert(result.msg); // Pesan error dari API
+          alert(result.msg);  
         }
       } catch (err) {
         alert('Gagal menghapus data pengguna');

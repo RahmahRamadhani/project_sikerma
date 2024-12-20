@@ -7,6 +7,7 @@ type DokumenKerjasamaType = {
   id_kerjasama: number;
   nama_dokumen: string;
   path_file: string;
+  tanggal_upload: Date;
   keterangan: string;
 };
 
@@ -16,12 +17,12 @@ export async function GET(req: Request) {
     const url = new URL(req.url);
     const id_kerjasama = url.searchParams.get('id_kerjasama');
 
-    // Jika ada `id_kerjasama`, filter data; jika tidak, ambil semua data
-    const dokumenList = id_kerjasama
-      ? await prisma.dokumenKerjasama.findMany({
-          where: { id_kerjasama: Number(id_kerjasama) },
-        })
-      : await prisma.dokumenKerjasama.findMany();
+    const dokumenList = await prisma.dokumenKerjasama.findMany({
+      where: id_kerjasama ? { id_kerjasama: Number(id_kerjasama) } : undefined,
+      include: {
+        kerjasama: true, // Join dengan tabel kerjasama
+      },
+    });
 
     return Response.json({
       statusCode: 200,
@@ -39,6 +40,7 @@ export async function GET(req: Request) {
     );
   }
 }
+
 
 // --------------------------- MENAMBAHKAN DATA ---------------------------
 export async function POST(req: Request) {

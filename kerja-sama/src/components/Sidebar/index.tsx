@@ -361,13 +361,13 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
   return (
     <ClickOutside onClick={() => setSidebarOpen(false)}>
       <aside
-        className={`fixed left-0 top-0 z-9999 flex h-screen w-72.5 flex-col overflow-y-hidden bg-orange-700 duration-300 ease-linear dark:bg-white lg:translate-x-0 ${sidebarOpen ? "translate-x-0" : "-translate-x-full"
+        className={`fixed left-0 top-0 z-9999 flex h-screen w-60 flex-col overflow-y-hidden bg-orange-700 duration-300 ease-linear dark:bg-white lg:translate-x-0 ${sidebarOpen ? "translate-x-0" : "-translate-x-full"
           }`}
       >
         {/* <!-- SIDEBAR HEADER --> */}
         <div className="flex items-center justify-between gap-2 px-6 py-5.5 lg:py-6.5">
           <Link href="/">
-            <h1 className="font-bold text-2xl text-white">SIKER PNP</h1>
+            <h1 className="font-bold text-2xl text-white">SIKERMA PNP</h1>
           </Link>
 
           <button
@@ -394,10 +394,10 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
 
         <div className="no-scrollbar flex flex-col overflow-y-auto duration-300 ease-linear">
           {/* <!-- Sidebar Menu --> */}
-          <nav className="mt-5 px-4 py-4 lg:mt-9 lg:px-6">
+          <nav className="mt-1 px-2 py-2  lg:px-3">
             {menuGroups.map((group, groupIndex) => (
               <div key={groupIndex}>
-                <h3 className="mb-4 ml-4 text-sm font-semibold text-bodydark2">
+                <h3 className="mb-2 ml-4 text-sm font-semibold text-bodydark2">
                   {group.name}
                 </h3>
 

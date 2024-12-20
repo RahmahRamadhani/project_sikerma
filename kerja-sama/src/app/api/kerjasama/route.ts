@@ -38,10 +38,35 @@ export async function GET(req: Request) {
         },
       });
 
+    // Format tanggal_akhir sebelum dikembalikan
+    const formattedKerjasamaList = Array.isArray(kerjasamaList)
+      ? kerjasamaList.map((kerjasama) => ({
+        ...kerjasama,
+        tanggal_akhir: kerjasama.tanggal_akhir
+          ? new Date(kerjasama.tanggal_akhir).toLocaleDateString('id-ID', {
+            day: '2-digit',
+            month: 'long',
+            year: 'numeric',
+          })
+          : null,
+      }))
+      : kerjasamaList
+        ? {
+          ...kerjasamaList,
+          tanggal_akhir: kerjasamaList.tanggal_akhir
+            ? new Date(kerjasamaList.tanggal_akhir).toLocaleDateString('id-ID', {
+              day: '2-digit',
+              month: 'long',
+              year: 'numeric',
+            })
+            : null,
+        }
+        : null;
+
     return Response.json({
       statusCode: 200,
       msg: 'Data berhasil diambil',
-      data: kerjasamaList,
+      data: formattedKerjasamaList,
     });
   } catch (error) {
     console.error('Error fetching data:', error);
@@ -54,6 +79,7 @@ export async function GET(req: Request) {
     );
   }
 }
+
 
 // --------------------------- MENAMBAHKAN DATA ---------------------------
 export async function POST(req: Request) {

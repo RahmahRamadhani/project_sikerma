@@ -3,8 +3,8 @@
 import Modal from "@/components/Modal/Modals";
 import { useState } from "react";
 
+
 export default function AddUser() {
-  //state untuk kontrol modal
   const [isOpen, setIsOpen] = useState(false);
   const handleModal = () => setIsOpen(!isOpen);
 
@@ -12,7 +12,7 @@ export default function AddUser() {
   const [namaUser, setNamaUser] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [role, setRole] = useState('');
+  const [role, setRole] = useState(''); 
 
   // Fungsi untuk menangani form submission (menambahkan user)
   const handleSubmit = async (e: React.FormEvent) => {
@@ -36,8 +36,10 @@ export default function AddUser() {
 
       const result = await response.json();
       if (response.ok) {
-        alert(result.msg); // Menampilkan pesan sukses
-        handleModal(); // Menutup modal setelah sukses
+        alert(result.msg); 
+        window.location.reload();// Menampilkan pesan sukses
+        handleModal();
+         // Menutup modal setelah sukses
         // Reset form
         setNamaUser('');
         setEmail('');
@@ -96,6 +98,7 @@ export default function AddUser() {
             >
               Tambah User
             </button>
+            
           </form>} />
     </>
   )

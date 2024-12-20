@@ -67,7 +67,7 @@ export default function EditKerjasama({ kerjasama }: { kerjasama: any }) {
       </button>
 
       <Modal isOpen={isOpen} onClose={handleModal}>
-      <h2 className="text-xl text-orange-500 font-bold mb-4">Edit Data Kerjasama</h2>
+      <h2 className="text-xl font-bold mb-4">Edit Data Kerjasama</h2>
         <label className="block  text-left mt-2 font-medium text-gray-700">Nomor Kerjasama</label>
         <input
           type="text"
