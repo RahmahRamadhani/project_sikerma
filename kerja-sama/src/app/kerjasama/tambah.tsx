@@ -61,29 +61,23 @@ export default function AddKerjasama() {
                 },
                 body: JSON.stringify(newKerjasama),
             });
-
+        
             const result = await response.json();
+            console.log('Response:', response);
+            console.log('Result:', result);
+        
             if (response.ok) {
                 alert(result.msg);
-                window.location.reload();// Menampilkan pesan sukses
                 handleModal();
-                // Menutup modal setelah sukses
-                // Reset form
-                setNoKerjasama('');
-                setJudulKerjasama('');
-                setTopikKerjasama('');
-                setTanggalMulai('');
-                setTanggalAkhir('');
-                setStatus('');
-                setTipe('');
-                setInstansi('');
+                window.location.reload();
             } else {
-                alert(result.msg); // Pesan error dari API
+                alert(result.msg);
             }
         } catch (error) {
-            console.error('Error menambahkan Data:', error);
+            console.error('Error:', error);
             alert('Gagal menambahkan Data');
         }
+        
     };
 
     return (

@@ -48,7 +48,7 @@ const handleDelete = async (id: number) => {
             <div className="max-w-full overflow-x-auto">
                 <table className="w-full table-auto">
                     <thead>
-                        <tr className="bg-gray-200 text-left dark:bg-meta-4">
+                        <tr className="bg-orange-100 text-left dark:bg-meta-4">
                             <th className="px-4 py-4 font-bold text-black text-center dark:text-white">
                                 No
                             </th>

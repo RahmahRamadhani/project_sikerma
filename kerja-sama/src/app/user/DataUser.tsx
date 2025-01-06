@@ -64,7 +64,7 @@ export default function DataUser() {
       ) : (
         <table className="w-full table-auto border border-gray-300">
           <thead>
-            <tr className="bg-gray-200 dark:bg-meta-4">
+            <tr className="bg-orange-100 dark:bg-meta-4">
               <th className="px-4 py-4 font-bold text-black text-center dark:text-white">No</th>
               <th className="px-4 py-4 font-bold text-black text-center dark:text-white">Nama User</th>
               <th className="px-4 py-4 font-bold text-black text-center dark:text-white">Email</th>
